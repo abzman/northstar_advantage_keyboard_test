@@ -125,24 +125,30 @@ void setup() {
     //digitalWrite(data[i], 0);
   }
   Serial.begin(115200);
+  
+  blinky();
 }
 
-#if 0
 void blinky(){
-  writeAddress(0x20); //cursor on
-  delay(200);
-  writeAddress(0x10); //cursor off
-  delay(200);
-  writeAddress(0x80); //caps on
-  delay(200);
-  writeAddress(0x40); //caps off
-  delay(200);
+  writeAddressAndReadData(0x10); //cursor off
+  writeAddressAndReadData(0x40); //caps off
+  
+  writeAddressAndReadData(0x20); //cursor on
+  Serial.println("cursor on");
+  delay(2000);
+  writeAddressAndReadData(0x10); //cursor off
+  Serial.println("cursor off");
+  delay(2000);
+  writeAddressAndReadData(0x80); //caps on
+  Serial.println("caps on");
+  delay(2000);
+  writeAddressAndReadData(0x40); //caps off
+  Serial.println("caps off");
+  delay(2000);
 }
-#endif
 
 void loop() {
 
-  //blinky();
   int rv = 0;
   int d;
   int i = 0;
